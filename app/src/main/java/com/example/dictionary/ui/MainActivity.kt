@@ -11,7 +11,7 @@ import com.example.dictionary.R
 import com.example.dictionary.databinding.ActivityMainBinding
 import com.example.dictionary.db.DictionaryDataBase
 import com.example.dictionary.db.DictionaryEntity
-import com.opencsv.CSVReader
+import com.opencsv.CSVReaderBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun readCsvAndInsertData(context: Context, database: DictionaryDataBase) {
         val inputStream = context.assets.open("db.csv")
-        val reader = CSVReader(InputStreamReader(inputStream))
+        val reader = CSVReaderBuilder(InputStreamReader(inputStream, Charsets.UTF_8)).build()
 
         val entries = mutableListOf<DictionaryEntity>()
         reader.readAll().forEach { row ->

@@ -9,6 +9,9 @@ import androidx.room.Query
 @Dao
 interface DictionaryDao {
 
+    @Query("SELECT * FROM dictionary_table WHERE englishWord LIKE '%' || :query || '%' ")
+    suspend fun searchDictionary(query: String): List<DictionaryEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllWords(data : List<DictionaryEntity>)
 

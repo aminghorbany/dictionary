@@ -6,15 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dictionary.databinding.FragmentSearchBinding
+import com.example.dictionary.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
-//    @Inject lateinit var homeLastMoviesAdapter : HomeLastMoviesAdapter
-//    private val viewModel : SearchViewModel by viewModels()
+    @Inject lateinit var searchAdapter : SearchAdapter
+    private val viewModel : SearchViewModel by viewModels()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentSearchBinding.inflate(layoutInflater)
         return binding.root
@@ -25,7 +29,16 @@ class SearchFragment : Fragment() {
         binding.apply {
             searchEdt.addTextChangedListener {
                 if (it.toString().isNotEmpty()){
-//                    viewModel.getSearchMoviesList(it.toString())
+                    viewModel.getFilteredWords(it.toString())
+                }
+            }
+
+            //observe
+            viewModel.dictionaryEntityLiveData.observe(viewLifecycleOwner){
+                wordsRecycler.apply {
+                    searchAdapter.differ.submitList(it)
+                    adapter = searchAdapter
+                    layoutManager = LinearLayoutManager(requireContext())
                 }
             }
         }
