@@ -5,4 +5,8 @@
     <string name="search">جست و جو</string>
     <string name="favorites">علاقه مندی ها</string>
     <string name="info">اطلاعات</string>
+    <string name="myName">M.Amin Ghorbany</string>
+    <string name="phone">+989037052133</string>
+    <string name="githubAddress">github.com/aminghorbany</string>
+    <string name="emailAddress">m.a.ghorbany73@gmail.com</string>
 </resources>
