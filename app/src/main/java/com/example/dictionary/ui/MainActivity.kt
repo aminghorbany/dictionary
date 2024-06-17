@@ -1,4 +1,4 @@
-package com.example.dictionary
+package com.example.dictionary.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.apply {
-            txtName.text = "haj amin ghorbany"
+
         }
     }
 }
