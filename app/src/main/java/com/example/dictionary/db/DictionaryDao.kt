@@ -10,6 +10,9 @@ import androidx.room.Query
 interface DictionaryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllWords(data : List<DictionaryEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWord(dictionaryEntry: DictionaryEntity)
 
     @Delete
