@@ -28,12 +28,6 @@ class SearchFragment : Fragment() {
 //                    viewModel.getSearchMoviesList(it.toString())
                 }
             }
-//            viewModel.getSearchMoviesListLiveData.observe(viewLifecycleOwner){
-//                homeLastMoviesAdapter.setData(it.data)
-//                moviesRecycler.initRecyclerView(LinearLayoutManager(requireContext() ,
-//                    RecyclerView.VERTICAL , false) , homeLastMoviesAdapter)
-//            }
-
         }
     }
 }
