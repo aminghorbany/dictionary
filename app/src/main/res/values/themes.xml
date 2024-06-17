@@ -1,8 +1,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Dictionary" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.Dictionary" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/crayola</item>
+        <item name="colorPrimaryVariant">@color/chineseBlack</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/crayola</item>
+        <item name="colorSecondaryVariant">@color/crayola</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@color/chineseBlack</item>
+    </style>
+
+    <!--TextView-->
+    <style name="TextViewLightStyle" parent="Widget.AppCompat.TextView" >
+        <item name="android:textColor" >@color/white</item>
+        <item name="fontFamily">sans-serif-light</item>
+    </style>
+
+    <!--TextInputLayout-->
+    <style name="CustomFilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox" >
+        <item name="hintTextColor">@color/white</item>
+        <item name="boxStrokeColor">@color/crayola</item>
+        <item name="startIconTint">@color/crayola</item>
+        <item name="boxBackgroundColor">@color/gunmetal</item>
     </style>
 
     <style name="Theme.Dictionary" parent="Base.Theme.Dictionary" />
