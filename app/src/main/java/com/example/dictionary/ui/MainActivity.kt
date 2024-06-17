@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    //handel onBackPress
-//    override fun onNavigateUp(): Boolean {
-//        return navController.navigateUp() || super.onNavigateUp()
-//    }
+    //handel onBackPress
+    override fun onNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onNavigateUp()
+    }
 }
