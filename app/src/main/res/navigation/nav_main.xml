@@ -3,8 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/searchFragment">
 
+
+    <fragment
+        android:id="@+id/searchFragment"
+        tools:layout="@layout/fragment_search"
+        android:name="com.example.dictionary.ui.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.dictionary.ui.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        tools:layout="@layout/fragment_info"
+        android:id="@+id/infoFragment"
+        android:name="com.example.dictionary.ui.info.InfoFragment"
+        android:label="InfoFragment" />
 
 
 </navigation>
