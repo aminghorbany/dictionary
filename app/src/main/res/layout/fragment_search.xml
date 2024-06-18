@@ -30,17 +30,18 @@
         app:layout_constraintTop_toBottomOf="@id/searchEdt" />
     <!--Loading-->
     <ProgressBar
-        android:id="@+id/searchLoading"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
+        android:id="@+id/loading"
         android:visibility="gone"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/shape_loading"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <!--Empty-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/emptyItemsLay"
+        android:id="@+id/emptyState"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
