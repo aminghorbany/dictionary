@@ -14,15 +14,34 @@ import javax.inject.Inject
 class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private lateinit var binding: ItemRecyclerSearchBinding
-    val differ = AsyncListDiffer(this , object : DiffUtil.ItemCallback<DictionaryEntity>(){
-        override fun areItemsTheSame(oldItem: DictionaryEntity, newItem: DictionaryEntity): Boolean {
-            return oldItem.id == newItem.id
+
+    private var wordsList = emptyList<DictionaryEntity>()
+
+    class WordsDiffUtils(private val oldItems : List<DictionaryEntity> , private val newItems : List<DictionaryEntity>) : DiffUtil.Callback(){
+        override fun getOldListSize(): Int {
+            return oldItems.size
         }
 
-        override fun areContentsTheSame(oldItem: DictionaryEntity, newItem: DictionaryEntity): Boolean {
-            return oldItem == newItem
+        override fun getNewListSize(): Int {
+            return newItems.size
         }
-    })
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldItems[oldItemPosition] === newItems[newItemPosition]
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldItems[oldItemPosition] === newItems[newItemPosition]
+        }
+
+    }
+
+    fun setData(data: List<DictionaryEntity>){
+        val moviesDiffUtils = WordsDiffUtils(wordsList , data)
+        val diffUtils = DiffUtil.calculateDiff(moviesDiffUtils)
+        wordsList = data
+        diffUtils.dispatchUpdatesTo(this)
+    }
 
     inner class SearchViewHolder : RecyclerView.ViewHolder(binding.root){
         @SuppressLint("SetTextI18n")
@@ -42,12 +61,12 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.S
         return SearchViewHolder()
     }
 
-    override fun getItemCount() = differ.currentList.size
+    override fun getItemCount() = wordsList.size
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.bindData(differ.currentList[position])
-        holder.setIsRecyclable(false) //for prevent duplicate item
+        holder.bindData(wordsList[position])
+        holder.setIsRecyclable(false)
     }
 
-    override fun getItemViewType(position: Int) = position // for prevent confusing
+    override fun getItemViewType(position: Int) = position
 }

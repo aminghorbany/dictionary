@@ -37,8 +37,8 @@ class SearchFragment : Fragment() {
 
             //observe
             viewModel.dictionaryEntityLiveData.observe(viewLifecycleOwner){
+                searchAdapter.setData(it)
                 wordsRecycler.apply {
-                    searchAdapter.differ.submitList(it)
                     adapter = searchAdapter
                     layoutManager = LinearLayoutManager(requireContext())
                 }
