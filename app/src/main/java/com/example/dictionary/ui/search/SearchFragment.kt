@@ -49,6 +49,8 @@ class SearchFragment : Fragment() {
                             delay(1000)
                             if (it.toString().isNotEmpty()) {
                                 viewModel.getFilteredWords(it.toString())
+                            } else {
+                                searchAdapter.setData(emptyList())
                             }
                         }
                     }
@@ -58,10 +60,6 @@ class SearchFragment : Fragment() {
             //observe
             viewModel.dictionaryEntityLiveData.observe(viewLifecycleOwner){
                 searchAdapter.setData(it)
-                wordsRecycler.apply {
-                    adapter = searchAdapter
-                    layoutManager = LinearLayoutManager(requireContext())
-                }
             }
             //loading
             viewModel.loading.observe(viewLifecycleOwner){
@@ -76,6 +74,11 @@ class SearchFragment : Fragment() {
                         goneWidget(loading)
                     }
                 }
+            }
+            // Set up RecyclerView
+            wordsRecycler.apply {
+                adapter = searchAdapter
+                layoutManager = LinearLayoutManager(requireContext())
             }
         }
     }

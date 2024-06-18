@@ -10,7 +10,9 @@ import com.example.dictionary.databinding.ItemRecyclerSearchBinding
 import com.example.dictionary.db.DictionaryEntity
 import com.example.dictionary.utils.showShortToast
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private lateinit var binding: ItemRecyclerSearchBinding
