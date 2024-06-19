@@ -32,6 +32,9 @@ interface DictionaryDao {
     @Delete
     suspend fun deleteWord(dictionaryEntry: DictionaryEntity)
 
+    @Query("select * from dictionary_table where isFavorite = 1")
+    suspend fun getAllFavoriteWord() : MutableList<DictionaryEntity>
+
     @Query("select * from dictionary_table")
     suspend fun getAllWord() : MutableList<DictionaryEntity>
 
