@@ -48,7 +48,11 @@ class FavoriteFragment : Fragment() {
         }
 
         favoritesAdapter.onItemClickListener { dictionaryEntity ->
-            val dialog = TranslateDialogFragment.newInstance(dictionaryEntity)
+            val dialog = TranslateDialogFragment.newInstance(dictionaryEntity).apply {
+                onDismissListener = {
+                    viewModel.getFavoriteWords()
+                }
+            }
             dialog.show(childFragmentManager, TranslateDialogFragment().tag)
         }
     }

@@ -2,6 +2,7 @@ package com.example.dictionary.ui.dialog
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
 
     private lateinit var binding: FragmentDialogTranslateBinding
     private val viewModel: SearchViewModel by activityViewModels()
+    var onDismissListener: (() -> Unit)? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDialogTranslateBinding.inflate(layoutInflater)
         return binding.root
@@ -40,6 +42,11 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
             }
         }
 
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismissListener?.invoke()
     }
 
     companion object {
