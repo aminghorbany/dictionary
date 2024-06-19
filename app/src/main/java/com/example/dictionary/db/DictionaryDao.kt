@@ -9,7 +9,15 @@ import androidx.room.Query
 @Dao
 interface DictionaryDao {
 
-    @Query("SELECT * FROM dictionary_table WHERE englishWord LIKE :query || '%' ")
+    @Query("""
+        SELECT * FROM dictionary_table 
+        WHERE id IN (
+            SELECT MIN(id) 
+            FROM dictionary_table 
+            WHERE englishWord LIKE :query || '%' 
+            GROUP BY englishWord
+        )
+    """)
     suspend fun searchDictionary(query: String): List<DictionaryEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
