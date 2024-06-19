@@ -59,7 +59,6 @@ class SearchFragment : Fragment() {
                         if (it.toString().isNotEmpty()) {
                             viewModel.getFilteredWords(it.toString())
                         } else {
-                            viewModel.clearDictionaryData()
                             searchAdapter.setData(emptyList())
                         }
                     }
@@ -75,18 +74,20 @@ class SearchFragment : Fragment() {
 
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             if (loading) {
-                requireContext().showWidget(binding.loading)
-                requireContext().goneWidget(binding.wordsRecycler)
+                requireContext().apply {
+                    showWidget(binding.loading)
+                    goneWidget(binding.wordsRecycler)
+                }
             } else {
-                requireContext().showWidget(binding.wordsRecycler)
-                requireContext().goneWidget(binding.loading)
+                requireContext().apply {
+                    showWidget(binding.wordsRecycler)
+                    goneWidget(binding.loading)
+                }
             }
         }
     }
 
     private fun setupRecyclerView() {
-        searchAdapter = SearchAdapter() // Initialize adapter only once
-
         binding.wordsRecycler.apply {
             adapter = searchAdapter
             layoutManager = LinearLayoutManager(requireContext())

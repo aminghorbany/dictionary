@@ -22,7 +22,4 @@ class SearchViewModel @Inject constructor(private val repo : SearchRepository) :
         loading.postValue(false)
     }
 
-    fun clearDictionaryData() {
-        dictionaryEntityLiveData.value = emptyList()
-    }
 }
