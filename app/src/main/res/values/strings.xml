@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Dictionary</string>
-    <string name="searchWord">جست و جوی کلمه</string>
+    <string name="searchWord">جستجوی کلمه...</string>
     <string name="notFound">کلمه ای یافت نشد</string>
-    <string name="search">جست و جو</string>
+    <string name="search">جستجو</string>
     <string name="favorites">علاقه مندی ها</string>
     <string name="info">اطلاعات</string>
     <string name="myName">M.Amin Ghorbany</string>
