@@ -57,7 +57,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgFavorite"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_margin="@dimen/_10sdp"
@@ -67,6 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtPersian" />
 
     <ImageView
+        android:id="@+id/imgDelete"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_margin="@dimen/_10sdp"
