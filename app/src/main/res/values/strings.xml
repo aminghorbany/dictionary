@@ -9,4 +9,6 @@
     <string name="phone">+989037052133</string>
     <string name="githubAddress">github.com/aminghorbany</string>
     <string name="emailAddress">m.a.ghorbany73@gmail.com</string>
+    <string name="addToFavorite">به علاقه مندی ها اضافه شد</string>
+    <string name="removeFromFavorite">از علاقه مندی ها حذف شد</string>
 </resources>

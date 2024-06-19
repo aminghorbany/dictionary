@@ -12,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentDialogTranslateBinding
 import com.example.dictionary.db.DictionaryEntity
+import com.example.dictionary.utils.showShortSnackBar
+import com.example.dictionary.utils.showShortToast
 import com.example.dictionary.viewmodel.SearchViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -37,7 +39,13 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
                 imgFavorite.setOnClickListener { _ ->
                     it.isFavorite = !it.isFavorite
                     viewModel.updateFavorite(it)
-                    imgFavorite.setImageResource(if (it.isFavorite) R.drawable.ic_heart_fill_red_24 else R.drawable.ic_heart_empty_red_24)
+                    if (it.isFavorite){
+                        imgFavorite.setImageResource(R.drawable.ic_heart_fill_red_24)
+                        requireContext().showShortToast(getString(R.string.addToFavorite))
+                    }else{
+                        imgFavorite.setImageResource(R.drawable.ic_heart_empty_red_24)
+                        requireContext().showShortToast(getString(R.string.removeFromFavorite))
+                    }
                 }
             }
         }
