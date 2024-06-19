@@ -11,6 +11,8 @@ import com.example.dictionary.R
 import com.example.dictionary.databinding.ActivityMainBinding
 import com.example.dictionary.db.DictionaryDataBase
 import com.example.dictionary.db.DictionaryEntity
+import com.example.dictionary.db.SharedPrefsManager
+import com.example.dictionary.utils.showLongToast
 import com.opencsv.CSVReaderBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  binding: ActivityMainBinding
     private lateinit var navController: NavController
     @Inject lateinit var database: DictionaryDataBase
+    @Inject lateinit var sharedPrefsManager: SharedPrefsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +38,11 @@ class MainActivity : AppCompatActivity() {
             bottomNav.selectedItemId = R.id.searchFragment
         }
 
-        // Insert data into the database - need condition for first run
-        lifecycleScope.launch {
-            readCsvAndInsertData(this@MainActivity, database)
+        if (sharedPrefsManager.getIsFirstRun()) {
+            lifecycleScope.launch {
+                readCsvAndInsertData(this@MainActivity, database)
+            }
+            sharedPrefsManager.setIsFirstRun(false)
         }
     }
 
@@ -59,7 +64,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         reader.close()
-
         CoroutineScope(Dispatchers.IO).launch {
             database.dictionaryDao().insertAllWords(entries)
         }
