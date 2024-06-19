@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             if (row.size >= 2) {
                 val englishWord = row[0]
                 val persianWord = row[1]
-                entries.add(DictionaryEntity(englishWord = englishWord, persianWord = persianWord))
+                entries.add(DictionaryEntity(englishWord = englishWord, persianWord = persianWord , isFavorite = false))
             }
         }
         reader.close()

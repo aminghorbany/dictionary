@@ -7,14 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.fragment.app.activityViewModels
+import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentDialogTranslateBinding
 import com.example.dictionary.db.DictionaryEntity
+import com.example.dictionary.viewmodel.SearchViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class TranslateDialogFragment : BottomSheetDialogFragment(){
 
     private lateinit var binding: FragmentDialogTranslateBinding
-
+    private val viewModel: SearchViewModel by activityViewModels()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDialogTranslateBinding.inflate(layoutInflater)
         return binding.root
@@ -28,6 +31,12 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
                 txtEnglish.text = it.englishWord
                 txtPersian.text = it.persianWord
                 visibleViewWithAnimation(txtPersian)
+                imgFavorite.setImageResource(if (it.isFavorite) R.drawable.ic_heart_fill_red_24 else R.drawable.ic_heart_empty_red_24)
+                imgFavorite.setOnClickListener { _ ->
+                    it.isFavorite = !it.isFavorite
+                    viewModel.updateFavorite(it)
+                    imgFavorite.setImageResource(if (it.isFavorite) R.drawable.ic_heart_fill_red_24 else R.drawable.ic_heart_empty_red_24)
+                }
             }
         }
 

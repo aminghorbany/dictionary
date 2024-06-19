@@ -23,6 +23,9 @@ interface DictionaryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllWords(data : List<DictionaryEntity>)
 
+    @Update
+    suspend fun updateWord(dictionaryEntry: DictionaryEntity)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWord(dictionaryEntry: DictionaryEntity)
 

@@ -22,4 +22,7 @@ class SearchViewModel @Inject constructor(private val repo : SearchRepository) :
         loading.postValue(false)
     }
 
+    fun updateFavorite(entity: DictionaryEntity) = viewModelScope.launch {
+        repo.updateDictionaryEntity(entity)
+    }
 }

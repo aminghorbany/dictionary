@@ -11,6 +11,7 @@ import kotlinx.parcelize.Parcelize
 data class DictionaryEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val englishWord: String = "",
-    val persianWord: String = ""
+    var englishWord: String = "",
+    var persianWord: String = "" ,
+    var isFavorite : Boolean = false
 ) : Parcelable
