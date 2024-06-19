@@ -1,9 +1,12 @@
 package com.example.dictionary.ui.dialog
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import com.example.dictionary.databinding.FragmentDialogTranslateBinding
 import com.example.dictionary.db.DictionaryEntity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -24,13 +27,10 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
             translationData?.let {
                 txtEnglish.text = it.englishWord
                 txtPersian.text = it.persianWord
-                txtId.text = it.id.toString()
+                visibleViewWithAnimation(txtPersian)
             }
         }
 
-        binding.apply {
-
-        }
     }
 
     companion object {
@@ -44,5 +44,16 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
             fragment.arguments = bundle
             return fragment
         }
+    }
+
+    private fun visibleViewWithAnimation(view: View) {
+        view.visibility = View.VISIBLE
+        val scaleX = ObjectAnimator.ofFloat(view, View.SCALE_X, 0f, 1f)
+        val scaleY = ObjectAnimator.ofFloat(view, View.SCALE_Y, 0f, 1f)
+        val animatorSet = AnimatorSet()
+        animatorSet.playTogether(scaleX, scaleY)
+        animatorSet.duration = 1000
+        animatorSet.interpolator = AccelerateDecelerateInterpolator()
+        animatorSet.start()
     }
 }
