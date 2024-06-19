@@ -12,7 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dictionary.databinding.FragmentSearchBinding
+import com.example.dictionary.db.DictionaryEntity
+import com.example.dictionary.ui.dialog.TranslateDialogFragment
 import com.example.dictionary.utils.goneWidget
+import com.example.dictionary.utils.showLongSnackBar
 import com.example.dictionary.utils.showWidget
 import com.example.dictionary.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -79,6 +82,13 @@ class SearchFragment : Fragment() {
             wordsRecycler.apply {
                 adapter = searchAdapter
                 layoutManager = LinearLayoutManager(requireContext())
+            }
+
+            searchAdapter.onItemClickListener {
+                val dialog = TranslateDialogFragment.newInstance(
+                    DictionaryEntity(id = it.id , englishWord = it.englishWord, persianWord = it.persianWord)
+                )
+                dialog.show(childFragmentManager, TranslateDialogFragment().tag)
             }
         }
     }

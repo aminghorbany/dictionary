@@ -3,11 +3,13 @@ package com.example.dictionary.ui.search
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dictionary.databinding.ItemRecyclerSearchBinding
 import com.example.dictionary.db.DictionaryEntity
+import com.example.dictionary.ui.dialog.TranslateDialogFragment
 import com.example.dictionary.utils.showShortToast
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -51,11 +53,16 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.S
             binding.apply {
                 nameTxt.text = item.englishWord
                 root.setOnLongClickListener {
-                    root.context.showShortToast(item.persianWord)
+                    onItemClick?.invoke(item)
                     true
                 }
             }
         }
+    }
+
+    private var onItemClick : ((DictionaryEntity) -> Unit?) ?= null
+    fun onItemClickListener(listener : (DictionaryEntity) -> Unit? ){
+        onItemClick = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
