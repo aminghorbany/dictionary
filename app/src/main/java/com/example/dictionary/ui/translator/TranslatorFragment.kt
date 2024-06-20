@@ -22,6 +22,7 @@ class TranslatorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             txtEmail.text = args.engWord
+            // now we have data
         }
     }
 }
