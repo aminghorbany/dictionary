@@ -32,6 +32,7 @@ class DeleteDialogFragment : DialogFragment(){
                     viewModel.deleteWord(data.englishWord)
                     requireContext().showLongToast("با موفقیت حذف شد")
                     dismiss()
+                    onDismissListener?.invoke()
                 }
                 btnNo.setOnClickListener {
                     dismiss()

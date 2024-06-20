@@ -49,6 +49,10 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
                 }
                 imgDelete.setOnClickListener {
                     val dialog = DeleteDialogFragment.newInstance(data)
+                    dialog.onDismissListener = {
+                        dismiss()
+                        onDismissListener?.invoke()
+                    }
                     dialog.show(childFragmentManager, DeleteDialogFragment().tag)
                 }
             }
