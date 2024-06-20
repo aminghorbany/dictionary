@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Dictionary</string>
     <string name="searchWord">جستجوی کلمه...</string>
-    <string name="notFound">کلمه ای یافت نشد</string>
+    <string name="notFound">کلمه ای یافت نشد.</string>
     <string name="search">جستجو</string>
     <string name="favorites">علاقه مندی ها</string>
     <string name="info">اطلاعات</string>
@@ -12,4 +12,5 @@
     <string name="addToFavorite">به علاقه مندی ها اضافه شد</string>
     <string name="removeFromFavorite">از علاقه مندی ها حذف شد</string>
     <string name="successfullyDelete">با موفقیت حذف شد</string>
+    <string name="translateOnline">مترجم آنلاین</string>
 </resources>
