@@ -13,7 +13,9 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.dictionary.databinding.FragmentTranslatorBinding
 import com.example.dictionary.utils.Constants
+import com.example.dictionary.utils.goneWidget
 import com.example.dictionary.utils.showShortToast
+import com.example.dictionary.utils.showWidget
 import com.example.dictionary.viewmodel.TranslatorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +44,20 @@ class TranslatorFragment : Fragment() {
 
             viewModel.translateWordLiveData.observe(viewLifecycleOwner){
                 requireContext().showShortToast(it.result.toString())
+            }
+
+            viewModel.loading.observe(viewLifecycleOwner){
+                if (it){
+                    requireContext().apply {
+                        showWidget(loading)
+                        goneWidget(txtBlueBtn)
+                    }
+                }else{
+                    requireContext().apply {
+                        showWidget(txtBlueBtn)
+                        goneWidget(loading)
+                    }
+                }
             }
         }
     }

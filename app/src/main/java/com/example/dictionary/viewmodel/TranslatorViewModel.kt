@@ -7,12 +7,13 @@ import com.example.dictionary.api.ApiServices
 import com.example.dictionary.db.DictionaryEntity
 import com.example.dictionary.models.ResponseTranslateWord
 import com.example.dictionary.repository.FavoriteRepository
+import com.example.dictionary.repository.TranslatorRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TranslatorViewModel @Inject constructor(private val api : ApiServices) : ViewModel() {
+class TranslatorViewModel @Inject constructor(private val repo : TranslatorRepository) : ViewModel() {
 
     val translateWordLiveData = MutableLiveData<ResponseTranslateWord>()
     val loading = MutableLiveData<Boolean>()
@@ -20,7 +21,7 @@ class TranslatorViewModel @Inject constructor(private val api : ApiServices) : V
     fun getTranslateWord(token : String ,action : String , lang : String , word : String )
     = viewModelScope.launch {
         loading.postValue(true)
-        val res = api.getTranslateWord(token, action, lang, word)
+        val res = repo.getTranslateWord(token, action, lang, word)
         translateWordLiveData.postValue(res.body())
         loading.postValue(false)
     }
