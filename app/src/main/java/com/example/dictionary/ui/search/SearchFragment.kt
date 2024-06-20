@@ -43,6 +43,13 @@ class SearchFragment : Fragment() {
         setupSearchEditText()
         observeViewModel()
         setupRecyclerView()
+        goToOnlineTranslate()
+    }
+
+    private fun goToOnlineTranslate() {
+        binding.includeEmptyState.btnTranslate.setOnClickListener {
+
+        }
     }
 
     private fun setupSearchEditText() {

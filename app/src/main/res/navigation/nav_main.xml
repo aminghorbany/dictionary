@@ -10,7 +10,15 @@
         android:id="@+id/searchFragment"
         tools:layout="@layout/fragment_search"
         android:name="com.example.dictionary.ui.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_translatorFragment"
+            app:destination="@id/translatorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.dictionary.ui.favorite.FavoriteFragment"
@@ -21,6 +29,16 @@
         android:id="@+id/infoFragment"
         android:name="com.example.dictionary.ui.info.InfoFragment"
         android:label="InfoFragment" />
+    <fragment
+        tools:layout="@layout/fragment_translator"
+        android:id="@+id/translatorFragment"
+        android:name="com.example.dictionary.ui.translator.TranslatorFragment"
+        android:label="TranslatorFragment" >
+        <argument
+            android:name="engWord"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
 
 
 </navigation>
