@@ -52,7 +52,7 @@
 
         <include
             android:id="@+id/includeEmptyState"
-            layout="@layout/empty_items" />
+            layout="@layout/empty_state" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

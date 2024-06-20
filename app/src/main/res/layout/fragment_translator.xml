@@ -11,12 +11,36 @@
         style="@style/TextViewLightStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
         android:layout_marginTop="316dp"
         android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaa"
         android:textSize="@dimen/_10ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txtResponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+        app:layout_constraintStart_toStartOf="@+id/txtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+    <Button
+        android:id="@+id/btnRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue_700"
+        android:text="get res"
+        android:textSize="@dimen/_14ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="@+id/txtResponse"
+        app:layout_constraintStart_toStartOf="@+id/txtResponse"
+        app:layout_constraintTop_toBottomOf="@+id/txtResponse" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

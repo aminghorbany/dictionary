@@ -36,7 +36,7 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
-        <include layout="@layout/empty_items" />
+        <include layout="@layout/empty_state" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
