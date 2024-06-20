@@ -47,6 +47,9 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
                         requireContext().showShortToast(getString(R.string.removeFromFavorite))
                     }
                 }
+                imgDelete.setOnClickListener {
+                    DeleteDialogFragment().show(childFragmentManager , DeleteDialogFragment().tag)
+                }
             }
         }
 
