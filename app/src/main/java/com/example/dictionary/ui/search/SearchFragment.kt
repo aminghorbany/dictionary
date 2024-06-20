@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dictionary.databinding.FragmentSearchBinding
 import com.example.dictionary.ui.dialog.TranslateDialogFragment
 import com.example.dictionary.utils.goneWidget
+import com.example.dictionary.utils.showShortToast
 import com.example.dictionary.utils.showWidget
 import com.example.dictionary.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -95,6 +96,11 @@ class SearchFragment : Fragment() {
 
         searchAdapter.onItemClickListener { dictionaryEntity ->
             val dialog = TranslateDialogFragment.newInstance(dictionaryEntity)
+            dialog.onDismissListener = {
+                val currentString = binding.searchEdt.text.toString()
+                requireContext().showShortToast(currentString)
+                viewModel.getFilteredWords(currentString)
+            }
             dialog.show(childFragmentManager, TranslateDialogFragment().tag)
         }
     }
