@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentSearchBinding
 import com.example.dictionary.ui.dialog.TranslateDialogFragment
 import com.example.dictionary.utils.goneWidget
@@ -48,7 +50,9 @@ class SearchFragment : Fragment() {
 
     private fun goToOnlineTranslate() {
         binding.includeEmptyState.btnTranslate.setOnClickListener {
-
+            val word = binding.searchEdt.text.toString()
+            val direction = SearchFragmentDirections.actionSearchFragmentToTranslatorFragment(word)
+            findNavController().navigate(direction)
         }
     }
 

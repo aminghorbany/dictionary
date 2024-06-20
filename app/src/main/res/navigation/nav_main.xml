@@ -36,8 +36,7 @@
         android:label="TranslatorFragment" >
         <argument
             android:name="engWord"
-            app:argType="string"
-            android:defaultValue='""' />
+            app:argType="string" />
     </fragment>
 
 
