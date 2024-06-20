@@ -13,4 +13,8 @@
     <string name="removeFromFavorite">از علاقه مندی ها حذف شد</string>
     <string name="successfullyDelete">با موفقیت حذف شد</string>
     <string name="translateOnline">مترجم آنلاین</string>
+    <string name="selectEngin">لطفا موتور ترجمه ی خود را انتخاب نمایید</string>
+    <string name="google">گوگل</string>
+    <string name="microsoft">ماکروسافت</string>
+    <string name="translateWord">ترجمه ی لغت</string>
 </resources>
