@@ -72,17 +72,35 @@ class SearchFragment : Fragment() {
         viewModel.dictionaryEntityLiveData.observe(viewLifecycleOwner) {
             searchAdapter.setData(it)
         }
-
-        viewModel.loading.observe(viewLifecycleOwner) { loading ->
-            if (loading) {
-                requireContext().apply {
-                    showWidget(binding.loading)
-                    goneWidget(binding.wordsRecycler)
+        binding.apply {
+            viewModel.loading.observe(viewLifecycleOwner) {
+                if (it) {
+                    requireContext().apply {
+                        showWidget(loading)
+                        goneWidget(wordsRecycler)
+                    }
+                } else {
+                    requireContext().apply {
+                        showWidget(wordsRecycler)
+                        goneWidget(loading)
+                    }
                 }
-            } else {
-                requireContext().apply {
-                    showWidget(binding.wordsRecycler)
-                    goneWidget(binding.loading)
+            }
+
+            viewModel.emptyState.observe(viewLifecycleOwner) {
+                val currentChar = binding.searchEdt.text.toString()
+                if (it && currentChar.isNotEmpty()) {
+                    //show emptyState
+                    requireContext().apply {
+                        showWidget(emptyState)
+                        goneWidget(wordsRecycler)
+                    }
+                } else {
+                    //hide emptyState
+                    requireContext().apply {
+                        showWidget(wordsRecycler)
+                        goneWidget(emptyState)
+                    }
                 }
             }
         }
