@@ -17,4 +17,6 @@
     <string name="google">گوگل</string>
     <string name="microsoft">ماکروسافت</string>
     <string name="translateWord">ترجمه ی لغت</string>
+    <string name="addToApp">افزودن به برنامه</string>
+    <string name="cancel">لغو</string>
 </resources>
