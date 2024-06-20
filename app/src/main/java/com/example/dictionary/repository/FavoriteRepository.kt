@@ -8,5 +8,4 @@ import javax.inject.Inject
 class FavoriteRepository @Inject constructor(private val dao: DictionaryDao){
 
     suspend fun getFavoriteWords() = dao.getAllFavoriteWord()
-    suspend fun updateDictionaryEntity(entity: DictionaryEntity) = dao.updateWord(entity)
 }

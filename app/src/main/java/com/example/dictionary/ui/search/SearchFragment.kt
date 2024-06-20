@@ -98,7 +98,6 @@ class SearchFragment : Fragment() {
             val dialog = TranslateDialogFragment.newInstance(dictionaryEntity)
             dialog.onDismissListener = {
                 val currentString = binding.searchEdt.text.toString()
-                requireContext().showShortToast(currentString)
                 viewModel.getFilteredWords(currentString)
             }
             dialog.show(childFragmentManager, TranslateDialogFragment().tag)

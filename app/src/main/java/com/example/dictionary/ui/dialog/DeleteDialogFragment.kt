@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentDialogDeleteBinding
 import com.example.dictionary.db.DictionaryEntity
 import com.example.dictionary.utils.showLongSnackBar
 import com.example.dictionary.utils.showLongToast
+import com.example.dictionary.utils.showShortToast
 import com.example.dictionary.viewmodel.SearchViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -30,7 +32,7 @@ class DeleteDialogFragment : DialogFragment(){
             entityData?.let { data ->
                 btnYes.setOnClickListener {
                     viewModel.deleteWord(data.englishWord)
-                    requireContext().showLongToast("با موفقیت حذف شد")
+                    requireContext().showShortToast(getString(R.string.successfullyDelete))
                     dismiss()
                     onDismissListener?.invoke()
                 }
