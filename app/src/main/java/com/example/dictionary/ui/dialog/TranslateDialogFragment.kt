@@ -31,15 +31,15 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
         super.onViewCreated(view, savedInstanceState)
         val translationData = arguments?.getParcelable<DictionaryEntity>(ARG_TRANSLATION_DATA)
         binding.apply {
-            translationData?.let {
-                txtEnglish.text = it.englishWord
-                txtPersian.text = it.persianWord
+            translationData?.let { data->
+                txtEnglish.text = data.englishWord
+                txtPersian.text = data.persianWord
                 visibleViewWithAnimation(txtPersian)
-                imgFavorite.setImageResource(if (it.isFavorite) R.drawable.ic_heart_fill_red_24 else R.drawable.ic_heart_empty_red_24)
+                imgFavorite.setImageResource(if (data.isFavorite) R.drawable.ic_heart_fill_red_24 else R.drawable.ic_heart_empty_red_24)
                 imgFavorite.setOnClickListener { _ ->
-                    it.isFavorite = !it.isFavorite
-                    viewModel.updateFavorite(it)
-                    if (it.isFavorite){
+                    data.isFavorite = !data.isFavorite
+                    viewModel.updateFavorite(data)
+                    if (data.isFavorite){
                         imgFavorite.setImageResource(R.drawable.ic_heart_fill_red_24)
                         requireContext().showShortToast(getString(R.string.addToFavorite))
                     }else{
@@ -48,7 +48,8 @@ class TranslateDialogFragment : BottomSheetDialogFragment(){
                     }
                 }
                 imgDelete.setOnClickListener {
-                    DeleteDialogFragment().show(childFragmentManager , DeleteDialogFragment().tag)
+                    val dialog = DeleteDialogFragment.newInstance(data)
+                    dialog.show(childFragmentManager, DeleteDialogFragment().tag)
                 }
             }
         }

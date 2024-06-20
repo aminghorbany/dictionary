@@ -9,5 +9,6 @@ class SearchRepository @Inject constructor(private val dao: DictionaryDao){
 
     suspend fun getFilteredWords(query: String) = dao.searchDictionary(query)
     suspend fun updateDictionaryEntity(entity: DictionaryEntity) = dao.updateWord(entity)
+    suspend fun deleteWord(engWord: String) = dao.deleteWord(engWord)
 
 }

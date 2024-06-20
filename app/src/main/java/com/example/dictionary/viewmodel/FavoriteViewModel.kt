@@ -23,7 +23,4 @@ class FavoriteViewModel @Inject constructor(private val repo : FavoriteRepositor
         loading.postValue(false)
     }
 
-    fun updateFavorite(entity: DictionaryEntity) = viewModelScope.launch {
-        repo.updateDictionaryEntity(entity)
-    }
 }

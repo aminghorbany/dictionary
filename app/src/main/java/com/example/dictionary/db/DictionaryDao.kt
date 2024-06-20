@@ -29,8 +29,8 @@ interface DictionaryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWord(dictionaryEntry: DictionaryEntity)
 
-    @Delete
-    suspend fun deleteWord(dictionaryEntry: DictionaryEntity)
+    @Query("delete from dictionary_table where englishWord = :engWord")
+    suspend fun deleteWord(engWord: String)
 
     @Query("select * from dictionary_table where isFavorite = 1")
     suspend fun getAllFavoriteWord() : MutableList<DictionaryEntity>

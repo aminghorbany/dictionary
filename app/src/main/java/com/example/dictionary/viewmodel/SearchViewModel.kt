@@ -25,4 +25,8 @@ class SearchViewModel @Inject constructor(private val repo : SearchRepository) :
     fun updateFavorite(entity: DictionaryEntity) = viewModelScope.launch {
         repo.updateDictionaryEntity(entity)
     }
+
+    fun deleteWord(engWord: String) = viewModelScope.launch {
+        repo.deleteWord(engWord)
+    }
 }
