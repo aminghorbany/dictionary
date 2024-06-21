@@ -113,7 +113,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Design and coded by Amin Ghorbany"
+        android:text="Designed and developed by Amin Ghorbany"
         android:textSize="@dimen/_10ssp"
         style="@style/TextViewLightStyle"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewCode"
