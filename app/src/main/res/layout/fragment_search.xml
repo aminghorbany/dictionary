@@ -5,21 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchFragment">
-    <!--Search-->
-    <EditText
-        android:id="@+id/searchEdt"
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchContainer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
+        app:strokeColor="@color/blue_700"
+        app:strokeWidth="@dimen/_2sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
         android:layout_margin="@dimen/_10sdp"
-        android:background="@drawable/bg_rounded_dark"
-        android:fontFamily="sans-serif-light"
-        android:hint="@string/searchWord"
-        android:maxLines="1"
-        android:padding="@dimen/_10sdp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/philippineSilver"
-        app:layout_constraintTop_toTopOf="parent" />
-    <!--List-->
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_round_search_24"
+                app:tint="@color/black" />
+
+            <EditText
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:id="@+id/searchEdt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/searchWord"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/wordsRecycler"
         android:layout_width="match_parent"
@@ -27,8 +54,8 @@
         android:clipToPadding="false"
         android:paddingTop="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEdt" />
-    <!--Loading-->
+        app:layout_constraintTop_toBottomOf="@id/searchContainer" />
+
     <ProgressBar
         android:id="@+id/loading"
         android:visibility="gone"
@@ -39,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--Empty-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/emptyState"
         android:layout_width="wrap_content"
@@ -48,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEdt">
+        app:layout_constraintTop_toBottomOf="@id/searchContainer">
 
         <include
             android:id="@+id/includeEmptyState"
