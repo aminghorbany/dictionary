@@ -25,7 +25,8 @@ class TranslatorDialogFragment : BottomSheetDialogFragment(){
 
     private lateinit var binding: FragmentDialogTranslatorBinding
     private val viewModel: TranslatorViewModel by activityViewModels()
-    var onDismissListener: (() -> Unit)? = null
+    private var isFavorite = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDialogTranslatorBinding.inflate(layoutInflater)
         return binding.root
@@ -39,12 +40,23 @@ class TranslatorDialogFragment : BottomSheetDialogFragment(){
             txtEnglish.text = englishWord.toString()
             txtPersian.text = persianWord.toString()
             visibleViewWithAnimation(txtPersian)
+            btnCancel.setOnClickListener {
+                dismiss()
+            }
+            imgFavorite.setOnClickListener {
+                isFavorite = !isFavorite
+                if (isFavorite){
+                    imgFavorite.setImageResource(R.drawable.ic_heart_fill_red_24)
+                }else{
+                    imgFavorite.setImageResource(R.drawable.ic_heart_empty_red_24)
+                }
+            }
+            btnAddToLocal.setOnClickListener {
+                viewModel.insertWord(DictionaryEntity(englishWord = englishWord.toString() , persianWord = persianWord.toString() , isFavorite = isFavorite))
+                requireContext().showShortToast(getString(R.string.successfullyInserted))
+                dismiss()
+            }
         }
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        onDismissListener?.invoke()
     }
 
     companion object {

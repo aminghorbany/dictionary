@@ -34,11 +34,4 @@ interface DictionaryDao {
 
     @Query("select * from dictionary_table where isFavorite = 1")
     suspend fun getAllFavoriteWord() : MutableList<DictionaryEntity>
-
-    @Query("select * from dictionary_table")
-    suspend fun getAllWord() : MutableList<DictionaryEntity>
-
-    @Query("select exists (select 1 from dictionary_table where id = :wordId) ")
-    suspend fun existsWord(wordId : Int) : Boolean
-
 }

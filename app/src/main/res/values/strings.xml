@@ -19,4 +19,5 @@
     <string name="translateWord">ترجمه ی لغت</string>
     <string name="addToApp">افزودن به برنامه</string>
     <string name="cancel">لغو</string>
+    <string name="successfullyInserted">لغت با موفقیت اضافه شد</string>
 </resources>

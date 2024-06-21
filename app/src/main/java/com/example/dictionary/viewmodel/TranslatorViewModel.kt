@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dictionary.api.ApiServices
+import com.example.dictionary.db.DictionaryDao
 import com.example.dictionary.db.DictionaryEntity
 import com.example.dictionary.models.ResponseTranslateWord
 import com.example.dictionary.repository.FavoriteRepository
@@ -30,6 +31,10 @@ class TranslatorViewModel @Inject constructor(private val repo : TranslatorRepos
             isSuccessful.postValue(false)
         }
         loading.postValue(false)
+    }
+
+    fun insertWord(entity: DictionaryEntity) = viewModelScope.launch {
+        repo.insertWord(entity)
     }
 
 }

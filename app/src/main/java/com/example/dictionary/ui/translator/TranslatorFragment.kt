@@ -53,10 +53,6 @@ class TranslatorFragment : Fragment() {
 
             viewModel.isSuccessful.observe(viewLifecycleOwner) {
                 val dialog = TranslatorDialogFragment.newInstance(args.engWord , translateWord)
-                dialog.onDismissListener = {
-//                    val currentString = binding.searchEdt.text.toString()
-//                    viewModel.getFilteredWords(currentString)
-                }
                 dialog.show(childFragmentManager, TranslatorDialogFragment().tag)
             }
             //observe loading
