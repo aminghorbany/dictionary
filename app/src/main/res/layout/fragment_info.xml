@@ -111,14 +111,16 @@
 
     <TextView
         android:id="@+id/textView4"
+        style="@style/TextViewLightStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Designed and developed by Amin Ghorbany"
+        android:layout_marginStart="8dp"
+        android:text="@string/description"
         android:textSize="@dimen/_10ssp"
-        style="@style/TextViewLightStyle"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewCode"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/imageViewCode" />
+        app:layout_constraintTop_toTopOf="@+id/imageViewCode"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/txtPhoneNumber"
