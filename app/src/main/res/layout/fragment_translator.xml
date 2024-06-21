@@ -37,24 +37,24 @@
         style="@style/TextViewLightStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_15sdp"
         android:text="@string/selectEngin"
         android:textSize="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_15sdp"
         app:layout_constraintBottom_toTopOf="@+id/cardView5"
-        app:layout_constraintEnd_toEndOf="@+id/cardView5"
-        app:layout_constraintStart_toStartOf="@+id/cardView5" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--Spinner-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
-        android:layout_width="@dimen/_150sdp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_30sdp"
         app:cardCornerRadius="@dimen/_4sdp"
         app:cardElevation="@dimen/_1sdp"
-        android:layout_marginBottom="@dimen/_30sdp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2">
 
         <Spinner
             android:id="@+id/enginSpinner"

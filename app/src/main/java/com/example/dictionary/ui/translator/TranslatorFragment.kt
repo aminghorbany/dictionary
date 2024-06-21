@@ -76,7 +76,7 @@ class TranslatorFragment : Fragment() {
         val google = getString(com.example.dictionary.R.string.google)
         val microsoft = getString(com.example.dictionary.R.string.microsoft)
         enginList = arrayListOf(google, microsoft)
-        val adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, enginList)
+        val adapter = ArrayAdapter(requireContext(),com.example.dictionary.R.layout.spinner_layout, enginList)
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         binding.apply {
             enginSpinner.adapter = adapter
