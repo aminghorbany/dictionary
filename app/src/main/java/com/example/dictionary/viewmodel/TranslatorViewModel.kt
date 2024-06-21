@@ -17,6 +17,7 @@ class TranslatorViewModel @Inject constructor(private val repo : TranslatorRepos
 
     val translateWordLiveData = MutableLiveData<ResponseTranslateWord>()
     val loading = MutableLiveData<Boolean>()
+    val isSuccessful = MutableLiveData<Boolean>()
 
     fun getTranslateWord(token : String ,action : String , lang : String , word : String )
     = viewModelScope.launch {
@@ -24,6 +25,9 @@ class TranslatorViewModel @Inject constructor(private val repo : TranslatorRepos
         val res = repo.getTranslateWord(token, action, lang, word)
         if (res.isSuccessful) {
             translateWordLiveData.postValue(res.body())
+            isSuccessful.postValue(true)
+        }else{
+            isSuccessful.postValue(false)
         }
         loading.postValue(false)
     }

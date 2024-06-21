@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentDialogTranslateBinding
 import com.example.dictionary.databinding.FragmentDialogTranslatorBinding
@@ -20,7 +21,7 @@ import com.example.dictionary.viewmodel.SearchViewModel
 import com.example.dictionary.viewmodel.TranslatorViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class TranslatorDialogFragment : DialogFragment(){
+class TranslatorDialogFragment : BottomSheetDialogFragment(){
 
     private lateinit var binding: FragmentDialogTranslatorBinding
     private val viewModel: TranslatorViewModel by activityViewModels()
@@ -32,26 +33,13 @@ class TranslatorDialogFragment : DialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val translationData = arguments?.getParcelable<DictionaryEntity>(ARG_TRANSLATOR_DATA)
+        val englishWord = arguments?.getString(ENG_WORD)
+        val persianWord = arguments?.getString(PERSIAN_WORD)
         binding.apply {
-            translationData?.let { data->
-                txtEnglish.text = data.englishWord
-                txtPersian.text = data.persianWord
-                visibleViewWithAnimation(txtPersian)
-                imgFavorite.setImageResource(if (data.isFavorite) R.drawable.ic_heart_fill_red_24 else R.drawable.ic_heart_empty_red_24)
-                imgFavorite.setOnClickListener { _ ->
-                    data.isFavorite = !data.isFavorite
-                    if (data.isFavorite){
-                        imgFavorite.setImageResource(R.drawable.ic_heart_fill_red_24)
-                        requireContext().showShortToast(getString(R.string.addToFavorite))
-                    }else{
-                        imgFavorite.setImageResource(R.drawable.ic_heart_empty_red_24)
-                        requireContext().showShortToast(getString(R.string.removeFromFavorite))
-                    }
-                }
-            }
+            txtEnglish.text = englishWord.toString()
+            txtPersian.text = persianWord.toString()
+            visibleViewWithAnimation(txtPersian)
         }
-
     }
 
     override fun onDismiss(dialog: DialogInterface) {
@@ -60,12 +48,14 @@ class TranslatorDialogFragment : DialogFragment(){
     }
 
     companion object {
-        private const val ARG_TRANSLATOR_DATA = "translator_data"
+        private const val ENG_WORD = "eng_word"
+        private const val PERSIAN_WORD = "persian_word"
 
-        fun newInstance(data: DictionaryEntity): TranslatorDialogFragment {
+        fun newInstance(engWord: String , persianWord : String): TranslatorDialogFragment {
             val fragment = TranslatorDialogFragment()
             val bundle = Bundle().apply {
-                putParcelable(ARG_TRANSLATOR_DATA, data)
+                putString(ENG_WORD, engWord)
+                putString(PERSIAN_WORD, persianWord)
             }
             fragment.arguments = bundle
             return fragment

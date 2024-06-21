@@ -6,15 +6,25 @@
     android:layout_height="wrap_content"
     android:background="@color/raisinBlack">
 
+    <View
+        android:id="@+id/view2"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/philippineSilver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/_4sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_30sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/view2">
 
         <TextView
             android:id="@+id/txtEnglish"
@@ -36,7 +46,7 @@
         android:gravity="center"
         android:padding="@dimen/_7sdp"
         tools:text="persian"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_marginTop="@dimen/_15sdp"
         android:textColor="@color/crayola"
         android:textSize="@dimen/_14ssp"
@@ -59,7 +69,7 @@
         android:id="@+id/btnAddToLocal"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_20sdp"
         android:backgroundTint="@color/blue_700"
         android:text="@string/addToApp"

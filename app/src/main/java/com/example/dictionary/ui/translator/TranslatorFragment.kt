@@ -12,6 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.example.dictionary.databinding.FragmentTranslatorBinding
+import com.example.dictionary.ui.dialog.TranslateDialogFragment
+import com.example.dictionary.ui.dialog.TranslatorDialogFragment
 import com.example.dictionary.utils.Constants
 import com.example.dictionary.utils.goneWidget
 import com.example.dictionary.utils.showShortToast
@@ -26,6 +28,7 @@ class TranslatorFragment : Fragment() {
     private val viewModel: TranslatorViewModel by viewModels()
     private lateinit var enginList: ArrayList<String>
     private var enginID = 0
+    private var translateWord = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentTranslatorBinding.inflate(layoutInflater)
@@ -45,7 +48,16 @@ class TranslatorFragment : Fragment() {
             }
 
             viewModel.translateWordLiveData.observe(viewLifecycleOwner) {
-                requireContext().showShortToast(it.result.toString())
+                translateWord = it.result.toString()
+            }
+
+            viewModel.isSuccessful.observe(viewLifecycleOwner) {
+                val dialog = TranslatorDialogFragment.newInstance(args.engWord , translateWord)
+                dialog.onDismissListener = {
+//                    val currentString = binding.searchEdt.text.toString()
+//                    viewModel.getFilteredWords(currentString)
+                }
+                dialog.show(childFragmentManager, TranslatorDialogFragment().tag)
             }
             //observe loading
             viewModel.loading.observe(viewLifecycleOwner) {
