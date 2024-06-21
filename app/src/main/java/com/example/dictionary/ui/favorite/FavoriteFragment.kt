@@ -59,7 +59,13 @@ class FavoriteFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.FavoriteWordsLiveData.observe(viewLifecycleOwner) {
-            favoritesAdapter.setData(it)
+            if (it.isEmpty()){
+                requireContext().apply {
+
+                }
+            }else{
+                favoritesAdapter.setData(it)
+            }
         }
     }
 }
