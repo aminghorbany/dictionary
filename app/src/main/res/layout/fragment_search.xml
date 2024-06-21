@@ -10,8 +10,9 @@
         android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
-        app:strokeColor="@color/blue_700"
-        app:strokeWidth="@dimen/_2sdp"
+        android:backgroundTint="@color/raisinBlack"
+        app:strokeColor="@color/glass"
+        app:strokeWidth="1dp"
         app:cardCornerRadius="@dimen/_10sdp"
         android:layout_margin="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:src="@drawable/ic_round_search_24"
-                app:tint="@color/black" />
+                app:tint="@color/philippineSilver" />
 
             <EditText
                 android:layout_marginLeft="@dimen/_3sdp"
@@ -42,8 +43,8 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/searchWord"
                 android:maxLines="1"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
+                android:textColor="@color/white"
+                android:textColorHint="@color/philippineSilver" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

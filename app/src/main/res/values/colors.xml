@@ -19,5 +19,6 @@
     <color name="crayola">#feaa2e</color>
     <color name="philippineSilver">#B3B3B3</color>
     <color name="philippineSilverAlpha">#94B3B3B3</color>
+    <color name="glass">#80696969</color>
     <color name="gunmetal">#2C2E43</color>
 </resources>
