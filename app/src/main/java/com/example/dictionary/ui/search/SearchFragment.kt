@@ -66,10 +66,23 @@ class SearchFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {
                 s?.let {
+                    val filteredInput = filterInput(it.toString())
+
+                    // Check for Persian characters
+                    if (containsPersianCharacters(it.toString())) {
+                        requireContext().showShortToast("لطفاً فقط حروف انگلیسی وارد کنید")
+                    }
+
+                    // only english character
+                    if (filteredInput != it.toString()) {
+                        binding.searchEdt.setText(filteredInput)
+                        binding.searchEdt.setSelection(filteredInput.length)
+                    }
+
                     searchJob = lifecycleScope.launch {
                         delay(1000)
-                        if (it.toString().isNotEmpty()) {
-                            viewModel.getFilteredWords(it.toString())
+                        if (filteredInput.isNotEmpty()) {
+                            viewModel.getFilteredWords(filteredInput)
                         } else {
                             searchAdapter.setData(emptyList())
                         }
@@ -131,5 +144,16 @@ class SearchFragment : Fragment() {
             }
             dialog.show(childFragmentManager, TranslateDialogFragment().tag)
         }
+    }
+
+    private fun filterInput(input: CharSequence?): String {
+        val regex = Regex("[^a-zA-Z ]")
+        return input?.replace(regex, "") ?: ""
+    }
+
+
+    private fun containsPersianCharacters(input: CharSequence?): Boolean {
+        val persianRegex = Regex("[\u0600-\u06FF]")
+        return input?.contains(persianRegex) == true
     }
 }
