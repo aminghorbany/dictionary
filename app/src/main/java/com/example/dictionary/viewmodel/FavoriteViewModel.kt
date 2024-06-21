@@ -14,13 +14,10 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(private val repo : FavoriteRepository) : ViewModel() {
 
     val FavoriteWordsLiveData = MutableLiveData<List<DictionaryEntity>>()
-    val loading = MutableLiveData<Boolean>()
 
     fun getFavoriteWords() = viewModelScope.launch {
-        loading.postValue(true)
         val res = repo.getFavoriteWords()
         FavoriteWordsLiveData.postValue(res)
-        loading.postValue(false)
     }
 
 }

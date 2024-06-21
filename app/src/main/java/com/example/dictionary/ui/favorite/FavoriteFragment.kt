@@ -61,19 +61,5 @@ class FavoriteFragment : Fragment() {
         viewModel.FavoriteWordsLiveData.observe(viewLifecycleOwner) {
             favoritesAdapter.setData(it)
         }
-
-        viewModel.loading.observe(viewLifecycleOwner) { loading ->
-            if (loading) {
-                requireContext().apply {
-                    showWidget(binding.loading)
-                    goneWidget(binding.favoriteRecycler)
-                }
-            } else {
-                requireContext().apply {
-                    showWidget(binding.favoriteRecycler)
-                    goneWidget(binding.loading)
-                }
-            }
-        }
     }
 }
