@@ -14,8 +14,8 @@
     <string name="successfullyDelete">با موفقیت حذف شد</string>
     <string name="translateOnline">مترجم آنلاین</string>
     <string name="selectEngin">لطفا موتور ترجمه ی خود را انتخاب نمایید</string>
-    <string name="google">گوگل</string>
-    <string name="microsoft">ماکروسافت</string>
+    <string name="google">Google</string>
+    <string name="microsoft">Microsoft</string>
     <string name="translateWord">ترجمه ی لغت</string>
     <string name="addToApp">افزودن به برنامه</string>
     <string name="cancel">لغو</string>
