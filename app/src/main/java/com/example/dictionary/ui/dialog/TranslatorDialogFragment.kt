@@ -12,25 +12,27 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentDialogTranslateBinding
+import com.example.dictionary.databinding.FragmentDialogTranslatorBinding
 import com.example.dictionary.db.DictionaryEntity
 import com.example.dictionary.utils.showShortSnackBar
 import com.example.dictionary.utils.showShortToast
 import com.example.dictionary.viewmodel.SearchViewModel
+import com.example.dictionary.viewmodel.TranslatorViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class TranslatorDialogFragment : DialogFragment(){
 
-    private lateinit var binding: FragmentDialogTranslateBinding
-    private val viewModel: SearchViewModel by activityViewModels()
+    private lateinit var binding: FragmentDialogTranslatorBinding
+    private val viewModel: TranslatorViewModel by activityViewModels()
     var onDismissListener: (() -> Unit)? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentDialogTranslateBinding.inflate(layoutInflater)
+        binding = FragmentDialogTranslatorBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val translationData = arguments?.getParcelable<DictionaryEntity>(ARG_TRANSLATION_DATA)
+        val translationData = arguments?.getParcelable<DictionaryEntity>(ARG_TRANSLATOR_DATA)
         binding.apply {
             translationData?.let { data->
                 txtEnglish.text = data.englishWord
@@ -39,7 +41,6 @@ class TranslatorDialogFragment : DialogFragment(){
                 imgFavorite.setImageResource(if (data.isFavorite) R.drawable.ic_heart_fill_red_24 else R.drawable.ic_heart_empty_red_24)
                 imgFavorite.setOnClickListener { _ ->
                     data.isFavorite = !data.isFavorite
-                    viewModel.updateFavorite(data)
                     if (data.isFavorite){
                         imgFavorite.setImageResource(R.drawable.ic_heart_fill_red_24)
                         requireContext().showShortToast(getString(R.string.addToFavorite))
@@ -47,14 +48,6 @@ class TranslatorDialogFragment : DialogFragment(){
                         imgFavorite.setImageResource(R.drawable.ic_heart_empty_red_24)
                         requireContext().showShortToast(getString(R.string.removeFromFavorite))
                     }
-                }
-                imgDelete.setOnClickListener {
-                    val dialog = DeleteDialogFragment.newInstance(data)
-                    dialog.onDismissListener = {
-                        dismiss()
-                        onDismissListener?.invoke()
-                    }
-                    dialog.show(childFragmentManager, DeleteDialogFragment().tag)
                 }
             }
         }
@@ -67,12 +60,12 @@ class TranslatorDialogFragment : DialogFragment(){
     }
 
     companion object {
-        private const val ARG_TRANSLATION_DATA = "translation_data"
+        private const val ARG_TRANSLATOR_DATA = "translator_data"
 
         fun newInstance(data: DictionaryEntity): TranslatorDialogFragment {
             val fragment = TranslatorDialogFragment()
             val bundle = Bundle().apply {
-                putParcelable(ARG_TRANSLATION_DATA, data)
+                putParcelable(ARG_TRANSLATOR_DATA, data)
             }
             fragment.arguments = bundle
             return fragment

@@ -22,7 +22,9 @@ class TranslatorViewModel @Inject constructor(private val repo : TranslatorRepos
     = viewModelScope.launch {
         loading.postValue(true)
         val res = repo.getTranslateWord(token, action, lang, word)
-        translateWordLiveData.postValue(res.body())
+        if (res.isSuccessful) {
+            translateWordLiveData.postValue(res.body())
+        }
         loading.postValue(false)
     }
 

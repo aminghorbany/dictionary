@@ -22,11 +22,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TranslatorFragment : Fragment() {
     private lateinit var binding: FragmentTranslatorBinding
-    private val args : TranslatorFragmentArgs by navArgs()
-    private val viewModel : TranslatorViewModel by viewModels()
+    private val args: TranslatorFragmentArgs by navArgs()
+    private val viewModel: TranslatorViewModel by viewModels()
     private lateinit var enginList: ArrayList<String>
-    private var service = ""
-    private var serviceID = 0
+    private var enginID = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentTranslatorBinding.inflate(layoutInflater)
@@ -39,20 +38,23 @@ class TranslatorFragment : Fragment() {
             enginListItem()
             txtEnglish.text = args.engWord
             btnTranslateWord.setOnClickListener {
-                viewModel.getTranslateWord(Constants.API_TOKEN , Constants.GOOGLE , Constants.LANGUAGE_FA , args.engWord)
+                when (enginID) {
+                    0 -> viewModel.getTranslateWord(Constants.API_TOKEN, Constants.GOOGLE, Constants.LANGUAGE_FA, args.engWord)
+                    1 -> viewModel.getTranslateWord(Constants.API_TOKEN, Constants.MICROSOFT, Constants.LANGUAGE_FA, args.engWord)
+                }
             }
 
-            viewModel.translateWordLiveData.observe(viewLifecycleOwner){
+            viewModel.translateWordLiveData.observe(viewLifecycleOwner) {
                 requireContext().showShortToast(it.result.toString())
             }
-
-            viewModel.loading.observe(viewLifecycleOwner){
-                if (it){
+            //observe loading
+            viewModel.loading.observe(viewLifecycleOwner) {
+                if (it) {
                     requireContext().apply {
                         showWidget(loading)
                         goneWidget(txtBlueBtn)
                     }
-                }else{
+                } else {
                     requireContext().apply {
                         showWidget(txtBlueBtn)
                         goneWidget(loading)
@@ -65,24 +67,23 @@ class TranslatorFragment : Fragment() {
     private fun enginListItem() {
         val google = getString(com.example.dictionary.R.string.google)
         val microsoft = getString(com.example.dictionary.R.string.microsoft)
-        enginList = arrayListOf(google , microsoft)
+        enginList = arrayListOf(google, microsoft)
         val adapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_item, enginList)
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
         binding.apply {
             enginSpinner.adapter = adapter
             enginSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    service = enginList[position]
-                    serviceID = id.toInt()
-                    when(serviceID){
+                    enginID = id.toInt()
+                    when (enginID) {
                         0 -> {
-                            imgTranslatorEngin.load(com.example.dictionary.R.drawable.google_translate){
+                            imgTranslatorEngin.load(com.example.dictionary.R.drawable.google_translate) {
                                 crossfade(true)
                                 crossfade(300)
                             }
                         }
                         1 -> {
-                            imgTranslatorEngin.load(com.example.dictionary.R.drawable.microsoft_translate){
+                            imgTranslatorEngin.load(com.example.dictionary.R.drawable.microsoft_translate) {
                                 crossfade(true)
                                 crossfade(300)
                             }
