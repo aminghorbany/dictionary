@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dictionary.R
 import com.example.dictionary.databinding.FragmentFavoriteBinding
 import com.example.dictionary.ui.dialog.TranslateDialogFragment
 import com.example.dictionary.ui.search.SearchAdapter
@@ -33,6 +35,13 @@ class FavoriteFragment : Fragment() {
         binding.apply {
             observeViewModel()
             setupRecyclerView()
+            navigateToSearch()
+        }
+    }
+
+    private fun navigateToSearch() {
+        binding.includeFavoriteEmptyState.btnGoToSearch.setOnClickListener {
+            findNavController().navigate(R.id.searchFragment)
         }
     }
 
@@ -59,12 +68,19 @@ class FavoriteFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.FavoriteWordsLiveData.observe(viewLifecycleOwner) {
-            if (it.isEmpty()){
-                requireContext().apply {
-
+            binding.apply {
+                if (it.isEmpty()){
+                    requireContext().apply {
+                        goneWidget(favoriteRecycler)
+                        showWidget(favoriteEmptyState)
+                    }
+                }else{
+                    requireContext().apply {
+                        goneWidget(favoriteEmptyState)
+                        showWidget(favoriteRecycler)
+                    }
+                    favoritesAdapter.setData(it)
                 }
-            }else{
-                favoritesAdapter.setData(it)
             }
         }
     }

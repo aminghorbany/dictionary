@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.favorite.FavoriteFragment">
 
-    <!--Loading-->
-    <ProgressBar
-        android:id="@+id/loading"
-        android:visibility="gone"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/shape_loading"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <!--List-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriteRecycler"
@@ -31,12 +19,18 @@
         app:layout_constraintTop_toTopOf="parent" />
     <!--Empty-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/emptyItemsLay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:id="@+id/favoriteEmptyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/empty_state" />
+        <include
+            android:id="@+id/includeFavoriteEmptyState"
+            layout="@layout/favorite_empty_state" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
