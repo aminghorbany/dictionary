@@ -71,16 +71,16 @@
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/imageViewContact" />
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_1sdp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:background="@color/philippineSilverAlpha"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewGithub" />
+<!--        <View-->
+<!--            android:id="@+id/view3"-->
+<!--            android:layout_width="@dimen/_200sdp"-->
+<!--            android:layout_height="@dimen/_1sdp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="@dimen/_3sdp"-->
+<!--            android:background="@color/philippineSilverAlpha"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/imageViewGithub" />-->
 
         <ImageView
             android:id="@+id/imageViewContact"
@@ -93,7 +93,7 @@
             app:srcCompat="@drawable/ic_phone_cell_contact_telephone_icon"
             app:tint="@color/white" />
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imageViewGithub"
             android:layout_width="@dimen/_22sdp"
             android:layout_height="@dimen/_22sdp"
@@ -102,14 +102,14 @@
             app:layout_constraintTop_toBottomOf="@+id/view2"
             app:srcCompat="@drawable/ic_github"
             app:tint="@color/white" />
-
+-->
         <ImageView
             android:id="@+id/imageViewEmail"
             android:layout_width="@dimen/_22sdp"
             android:layout_height="@dimen/_22sdp"
             android:layout_marginTop="@dimen/_3sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/view2"
             app:srcCompat="@drawable/ic_email"
             app:tint="@color/white" />
 
@@ -136,16 +136,16 @@
             app:layout_constraintStart_toStartOf="@+id/view2"
             app:layout_constraintTop_toTopOf="@+id/imageViewContact" />
 
-        <TextView
-            android:id="@+id/txtGithub"
-            style="@style/TextViewLightStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/githubAddress"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewGithub"
-            app:layout_constraintStart_toStartOf="@+id/view3"
-            app:layout_constraintTop_toTopOf="@+id/imageViewGithub" />
+<!--        <TextView-->
+<!--            android:id="@+id/txtGithub"-->
+<!--            style="@style/TextViewLightStyle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/githubAddress"-->
+<!--            android:textSize="@dimen/_10ssp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/imageViewGithub"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/view3"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/imageViewGithub" />-->
 
         <TextView
             android:id="@+id/txtEmail"
@@ -155,7 +155,7 @@
             android:text="@string/emailAddress"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewEmail"
-            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="@+id/view2"
             app:layout_constraintTop_toTopOf="@+id/imageViewEmail" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

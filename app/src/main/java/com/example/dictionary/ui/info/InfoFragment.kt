@@ -22,12 +22,12 @@ class InfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            imageViewGithub.setOnClickListener {
+            /*imageViewGithub.setOnClickListener {
                 openGithub()
             }
             txtGithub.setOnClickListener {
                 openGithub()
-            }
+            }*/
             imageViewContact.setOnClickListener {
                 openCallScreen()
             }
