@@ -41,9 +41,8 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.S
         fun bindData(item: DictionaryEntity) {
             binding.apply {
                 nameTxt.text = item.englishWord
-                root.setOnLongClickListener {
+                root.setOnClickListener {
                     onItemClick?.invoke(item)
-                    true
                 }
             }
         }

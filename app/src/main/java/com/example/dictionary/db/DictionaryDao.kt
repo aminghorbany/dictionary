@@ -9,6 +9,13 @@ import androidx.room.Query
 @Dao
 interface DictionaryDao {
 
+//    @Query("""
+//        SELECT DISTINCT englishWord, GROUP_CONCAT(persianWord, ', ') AS persianWords
+//        FROM dictionary_table
+//        WHERE englishWord LIKE :query || '%'
+//        GROUP BY englishWord
+//    """)
+
     @Query("""
         SELECT * FROM dictionary_table 
         WHERE id IN (
