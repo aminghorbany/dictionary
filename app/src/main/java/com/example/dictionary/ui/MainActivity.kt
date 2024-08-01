@@ -67,16 +67,26 @@ class MainActivity : AppCompatActivity() {
     private fun readCsvAndInsertData(context: Context, database: DictionaryDataBase) {
         val inputStream = context.assets.open("db.csv")
         val reader = CSVReaderBuilder(InputStreamReader(inputStream, Charsets.UTF_8)).build()
+        val entriesMap = mutableMapOf<String, MutableList<String>>()
 
-        val entries = mutableListOf<DictionaryEntity>()
         reader.readAll().forEach { row ->
             if (row.size >= 2) {
-                val englishWord = row[0]
-                val persianWord = row[1]
-                entries.add(DictionaryEntity(englishWord = englishWord, persianWord = persianWord , isFavorite = false))
+                val englishWord = row[0].trim()
+                val persianWord = row[1].trim()
+
+                entriesMap.getOrPut(englishWord) { mutableListOf() }.add(persianWord)
             }
         }
         reader.close()
+
+        val entries = entriesMap.map { (englishWord, persianWords) ->
+            DictionaryEntity(
+                englishWord = englishWord,
+                persianWord = persianWords.joinToString(" | "),
+                isFavorite = false
+            )
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             database.dictionaryDao().insertAllWords(entries)
         }
