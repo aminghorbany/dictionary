@@ -15,6 +15,7 @@ import com.example.dictionary.databinding.FragmentTranslatorBinding
 import com.example.dictionary.ui.dialog.TranslateDialogFragment
 import com.example.dictionary.ui.dialog.TranslatorDialogFragment
 import com.example.dictionary.utils.Constants
+import com.example.dictionary.utils.NetworkChecker
 import com.example.dictionary.utils.goneWidget
 import com.example.dictionary.utils.showShortToast
 import com.example.dictionary.utils.showWidget
@@ -41,9 +42,13 @@ class TranslatorFragment : Fragment() {
             enginListItem()
             txtEnglish.text = args.engWord
             btnTranslateWord.setOnClickListener {
-                when (enginID) {
-                    0 -> viewModel.getTranslateWord(Constants.API_TOKEN, Constants.GOOGLE, Constants.LANGUAGE_FA, args.engWord)
-                    1 -> viewModel.getTranslateWord(Constants.API_TOKEN, Constants.MICROSOFT, Constants.LANGUAGE_FA, args.engWord)
+                if (NetworkChecker(requireContext()).isInternetConnected){
+                    when (enginID) {
+                        0 -> viewModel.getTranslateWord(Constants.API_TOKEN, Constants.GOOGLE, Constants.LANGUAGE_FA, args.engWord)
+                        1 -> viewModel.getTranslateWord(Constants.API_TOKEN, Constants.MICROSOFT, Constants.LANGUAGE_FA, args.engWord)
+                    }
+                }else{
+                    requireContext().showShortToast("لطفا اینترنت خود را چک نمایید")
                 }
             }
 
